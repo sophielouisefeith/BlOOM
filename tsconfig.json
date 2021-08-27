@@ -4,8 +4,9 @@
       "allowJs": true,
       "target": "es2017",
       // to use await i had to set target to es2017 and module to system
-      "module": "System",
-      "moduleResolution": "node"
+    //   "module": "co",
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true 
       
     },
     "include": ["./src/**/*"]

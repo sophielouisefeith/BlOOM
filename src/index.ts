@@ -7,15 +7,16 @@
 // - Compatible with Ethereum (optional)
 // - HD wallet (optional)
 
+import { publicKey } from "eth-crypto";
+
 // export {};
 
 console.log('hello')
 
 // with keypair we can generate RSA keys.
-var keypair = require('keypair');
-var pair = keypair();
-console.log(pair, "he public and private key");
-
+//var keypair = require('keypair');
+//var pair = keypair();
+//console.log(pair, "he public and private key");
 
 // libaries 
 
@@ -23,12 +24,17 @@ console.log(pair, "he public and private key");
 //import EthCrypto = require('eth-crypto');
 // import crypto from "crypto";
 // var eccrypto = require("eccrypto");
-let elliptic = require('elliptic');
-let sha3 = require('js-sha3');
+//let elliptic = require('elliptic');
+//let sha3 = require('js-sha3');
+import sha3 from "js-sha3";
+import elliptic from "elliptic";
 let ec = new elliptic.ec('secp256k1');
 // var hash = CryptoJS.MD5("Message");
 // var hash = CryptoJS.SHA1("Message");
 var cw = require('crypto-wallets');
+var crypto = require("crypto");
+var eccrypto = require("eccrypto");
+
 
 
 
@@ -67,30 +73,23 @@ let pubKey = keyPair.getPublic();
 
 
 console.log(`Private key: ${privKey}`);
-console.log("Public key :", pubKey.encode("hex").substr(2));
+console.log("Public key :", pubKey.encode("hex", true).substr(2));
 console.log("Public key (compressed):",pubKey.encodeCompressed("hex"));
 
 
-
-
-
-
-
-
-
-
-  
-    //******************** ****************************************/
+//******************** ****************************************/
 //             SIGN A MESSAGE                                      //
 //*********************************************** ************/
 
 //Message encryption and signing is done by a private key
 
 const msg = 'He this message comes from Rose, needs to be signed, verified and encrypted';
-
+// hash your message before signing 
  var hash = sha3.keccak256(msg);
 // we sign with a private key
-let signature = ec.sign(hash, privKey, "hex", {canonical: true});
+const privKeyb = Buffer.from(privKey, "utf-8");
+let signature = ec.sign(hash, privKeyb, "hex", {canonical: true});
+
 
 console.log(`Msg: ${msg}`);
 console.log(`Msg hash: ${hash}`);
@@ -111,11 +110,17 @@ let validSig = ec.verify(
   hash, signature, pubKeyRecovered);
 console.log("Signature valid?", validSig);
 
-
-
 //let encryptdata = msg;
 
-//const encryptMessage = crypto.publicEncrypt()
+const encryptMessage = crypto.publicEncrypt(
+{
+        key: pubKey,
+
+},
+        Buffer.from(msg)
+);
+
+console.log("encypted data: ", encryptMessage.toString("base64"));
 
 
 
