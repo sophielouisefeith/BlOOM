@@ -2,7 +2,10 @@
     "compilerOptions": {
       "outDir": "./out",
       "allowJs": true,
-      "target": "es5"
+      "target": "es2017",
+      // to use await i had to set target to es2017 and module to system
+    //   "module": "system",
+      
     },
     "include": ["./src/**/*"]
 }
