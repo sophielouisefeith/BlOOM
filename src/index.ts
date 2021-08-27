@@ -17,18 +17,19 @@ var pair = keypair();
 console.log(pair, "he public and private key");
 
 
-
 // libaries 
 
-import CryptoJS = require('crypto-js');
-import EthCrypto = require('eth-crypto');
-var eccrypto = require("eccrypto");
+// import CryptoJS from 'crypto-js';
+//import EthCrypto = require('eth-crypto');
+// import crypto from "crypto";
+// var eccrypto = require("eccrypto");
 let elliptic = require('elliptic');
 let sha3 = require('js-sha3');
 let ec = new elliptic.ec('secp256k1');
-var hash = CryptoJS.MD5("Message");
-var hash = CryptoJS.SHA1("Message");
+// var hash = CryptoJS.MD5("Message");
+// var hash = CryptoJS.SHA1("Message");
 var cw = require('crypto-wallets');
+
 
 
 
@@ -52,14 +53,14 @@ console.log("Private Key: " + ethWallet.privateKey);
 //It isn't as widely used as SHA-1, though it appears 
 //to provide much better security.
 
-var hash = CryptoJS.SHA256("hash:");
-console.log("hash", hash);
+// var hash = CryptoJS.SHA256("hash:");
+// console.log("hash", hash);
 
 
 //******************** ****************************************/
 //             GENERATE KEYS       with elliptic              //
 //*********************************************** ************/
-// Generate random keys
+//Generate random keys
 let keyPair = ec.genKeyPair(); 
 let privKey = keyPair.getPrivate("hex");
 let pubKey = keyPair.getPublic();
@@ -70,6 +71,14 @@ console.log("Public key :", pubKey.encode("hex").substr(2));
 console.log("Public key (compressed):",pubKey.encodeCompressed("hex"));
 
 
+
+
+
+
+
+
+
+
   
     //******************** ****************************************/
 //             SIGN A MESSAGE                                      //
@@ -77,9 +86,9 @@ console.log("Public key (compressed):",pubKey.encodeCompressed("hex"));
 
 //Message encryption and signing is done by a private key
 
-let msg = 'He this message comes from Rose, needs to be signed, verified and encrypted';
+const msg = 'He this message comes from Rose, needs to be signed, verified and encrypted';
 
-hash = sha3.keccak256(msg);
+ var hash = sha3.keccak256(msg);
 // we sign with a private key
 let signature = ec.sign(hash, privKey, "hex", {canonical: true});
 
@@ -104,29 +113,46 @@ console.log("Signature valid?", validSig);
 
 
 
+//let encryptdata = msg;
+
+//const encryptMessage = crypto.publicEncrypt()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //******************** ****************************************/
 //              USING IES encrypting and decrypting a message //
 //*********************************************** ************/
-var privateKeyA = eccrypto.generatePrivate();
-var publicKeyA = eccrypto.getPublic(privateKeyA);
-var privateKeyB = eccrypto.generatePrivate();
-var publicKeyB = eccrypto.getPublic(privateKeyB);
+// var privateKeyA = eccrypto.generatePrivate();
+// var publicKeyA = eccrypto.getPublic(privateKeyA);
+// var privateKeyB = eccrypto.generatePrivate();
+// var publicKeyB = eccrypto.getPublic(privateKeyB);
 
-// Encrypting the message for B.
-eccrypto.encrypt(publicKeyB, Buffer.from("msg to b")).then(function(encrypted) {
-    // B decrypting the message.
-    eccrypto.decrypt(privateKeyB, encrypted).then(function(plaintext) {
-      console.log("Message to part B:", plaintext.toString());
-    });
-  });
+// // Encrypting the message for B.
+// eccrypto.encrypt(publicKeyB, Buffer.from("msg to b")).then(function(encrypted) {
+//     // B decrypting the message.
+//     eccrypto.decrypt(privateKeyB, encrypted).then(function(plaintext) {
+//       console.log("Message to part B:", plaintext.toString());
+//     });
+//   });
   
-  // Encrypting the message for A.
-  eccrypto.encrypt(publicKeyA, Buffer.from("msg to a")).then(function(encrypted) {
-    // A decrypting the message.
-    eccrypto.decrypt(privateKeyA, encrypted).then(function(plaintext) {
-      console.log("Message to part A:", plaintext.toString());
-    });
-  });
+//   // Encrypting the message for A.
+//   eccrypto.encrypt(publicKeyA, Buffer.from("msg to a")).then(function(encrypted) {
+//     // A decrypting the message.
+//     eccrypto.decrypt(privateKeyA, encrypted).then(function(plaintext) {
+//       console.log("Message to part A:", plaintext.toString());
+//     });
+//   });
 
 
 
@@ -140,24 +166,24 @@ eccrypto.encrypt(publicKeyB, Buffer.from("msg to b")).then(function(encrypted) {
 
 //let's create an identity for two people - Shanna & Rose
 //Shanna
-const Shanna = EthCrypto.createIdentity();
+//const Shanna = EthCrypto.createIdentity();
 //Rose 
-const Rose = EthCrypto.createIdentity();
-const secretMessage = 'He Rose i would like to sent you a message';
+// const Rose = EthCrypto.createIdentity();
+// const secretMessage = 'He Rose i would like to sent you a message';
 
-signature = EthCrypto.sign(
-    Shanna.privateKey,
-    EthCrypto.hash.keccak256(secretMessage)
-);
-const payload = {
-    message: secretMessage,
-    signature
-};
-const encrypted =  EthCrypto.encryptWithPublicKey(
+// signature = EthCrypto.sign(
+//     Shanna.privateKey,
+//     EthCrypto.hash.keccak256(secretMessage)
+// );
+// const payload = {
+//     message: secretMessage,
+//     signature
+// };
+// const encrypted =  EthCrypto.encryptWithPublicKey(
 
-    Rose.publicKey, // by encryping with Rose publicKey, only Rose can decrypt the payload with her privateKey
-    JSON.stringify(payload) // we have to stringify the payload before we can encrypt it
-);
+//     Rose.publicKey, // by encryping with Rose publicKey, only Rose can decrypt the payload with her privateKey
+//     JSON.stringify(payload) // we have to stringify the payload before we can encrypt it
+// );
 
 
 
@@ -170,7 +196,7 @@ const encrypted =  EthCrypto.encryptWithPublicKey(
 
 
 
-console.log(secretMessage);
+// console.log(secretMessage);
 
 
 
