@@ -1,34 +1,14 @@
 # Crypto Wallet 
 
-###### tags: crypto wallet, ethereum
-https://eng.lyft.com/awesome-tech-specs-86eea8e45bb9
+###### tags: crypto wallet)
+
 ## Summary
 
-Creating a Crypto wallet
-Practice with different crypto libatries
-Methods on how to generate keys sent encrypted messages
+This 
 
-## Background
-
-With this assiment we experiment for the first time with a crypto wallet and her concept 
-
-## Goals
-
-• understanding a crypto wallet 
-• Different ways to encrypt and decrypt
+### :memo: Where do I start?
 
 
-## Non-Goals
-
-
-## Plan
-
-Understanding the concept
-
-## Measuring impact
-Trial and error on personal level
-
-## Milestones 
 
 NOTE:
 Public-key cryptography, or asymmetric cryptography, is any cryptographic system that uses pairs of keys: public keys which may be disseminated widely, and private keys which are known only to the owner. This accomplishes two functions: authentication, where the public key verifies that a holder of the paired private key sent the message, and encryption, where only the paired private key holder can decrypt the message encrypted with the public key.
@@ -36,10 +16,10 @@ Public-key cryptography, or asymmetric cryptography, is any cryptographic system
 ### The requirments:
 
 - [x] Generating keys
-- [x] Signing messages
-- [x] Verifying signatures
-- [x] Encrypting messages
-- [x] Decrypting messages
+- [ ] Signing messages
+- [ ] Verifying signatures
+- [ ] Encrypting messages
+- [ ] Decrypting messages
 
 :rocket: 
 
@@ -47,16 +27,6 @@ firt choose a libary such as crypto js.
 npm install crypto-js
 
 ## Generating keys: 
-RSA works by generating a public and a private key. The public and private keys are generated together and form a key pair.
-![](https://i.imgur.com/Az3pAQo.png)
-
-The public key can be used to encrypt any arbitrary piece of data, but cannot decrypt it.
-![](https://i.imgur.com/mnocXob.png)
-The private key can be used to decrypt any piece of data that was encrypted by it’s corresponding public key.
-![](https://i.imgur.com/P5vtCWY.png)
-
-
-
 
 ### Private Keys:
 Message encryption and signing is done by a private key. The private keys are always kept secret by their owner, just like passwords. In the server infrastructure, private key usually stay in an encrypted and protected keystore. In the blockchain systems the private keys usually stay in specific software or hardware apps or devices called "crypto wallets", which store securely a set of private keys.
@@ -90,17 +60,9 @@ SHA-3 Cryptographic Hash Algorithms
 “Digital Signatures provide a digital fingerprint that allows a recipient to authenticate the message sender and its integrity.”
 
 
-![](https://i.imgur.com/fXpQ3ze.png)
-
-
-
 
 ### Veryfinging signatures 
 
-
-
-
-//////////// to update encrypting below
 
 Authenticated Encryption: Encrypt / Decrypt Messages
 using MAC
