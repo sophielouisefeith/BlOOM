@@ -23,7 +23,6 @@ console.log('hello');
 import sha3 from "js-sha3";
 import elliptic from "elliptic";
 let ec = new elliptic.ec('secp256k1');
-import cw from "crypto-wallets";
 import crypto from "crypto";
 //var crypto = require("crypto");
 //var eccrypto = require("eccrypto");
@@ -33,12 +32,12 @@ import crypto from "crypto";
 //import chalk from 'chalk';
 //console.log(chalk.blue('Hello world!'));
 console.log('create an (ETH) wallet');
-console.log("First we generate a wallet from the ethwallet libary");
-var ethWallet = cw.generateWallet('ETH');
-console.log('create an address');
-console.log("Address: " + ethWallet.address);
-console.log('create an private key');
-console.log("Private Key: " + ethWallet.privateKey);
+//console.log("First we generate a wallet from the ethwallet libary");
+// var ethWallet = cw.generateWallet('ETH');
+// console.log('create an address');
+// console.log("Address: " + ethWallet.address);
+// console.log('create an private key');
+// console.log("Private Key: " + ethWallet.privateKey);
 //SHA-256 is one of the four variants in the SHA-2 set. 
 //It isn't as widely used as SHA-1, though it appears 
 //to provide much better security.
@@ -76,27 +75,17 @@ console.log("Recovered pubKey:", pubKeyRecovered.encodeCompressed("hex"));
 //*********************************************** ************/
 let validSig = ec.verify(hash, signature, pubKeyRecovered);
 console.log("Signature valid?", validSig);
+//******************** ****************************************/
+//             encrypt and decryp a message                   //
+//*********************************************** ************/
 //let encryptdata = msg;
 const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
     // The standard secure default length for RSA keys is 2048 bits
     modulusLength: 2048,
 });
-const encryptMessage = crypto.publicEncrypt({
-    key: publicKey,
-    padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-    oaepHash: "sha256",
-}, Buffer.from(msg));
+const encryptMessage = crypto.publicEncrypt({ key: publicKey, }, Buffer.from(msg));
 console.log("encypted data: ", encryptMessage.toString("base64"));
-const decryptedMessage = crypto.privateDecrypt({
-    key: privateKey,
-    // In order to decrypt the data, we need to specify the
-    // same hashing function and padding scheme that we used to
-    // encrypt the data in the previous step
-    padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-    oaepHash: "sha256",
-}, encryptMessage);
-// The decrypted data is of the Buffer type, which we can convert to a
-// string to reveal the original data
+const decryptedMessage = crypto.privateDecrypt({ key: privateKey, }, encryptMessage);
 console.log("decrypted data: ", decryptedMessage.toString());
 //******************** ****************************************/
 //              USING IES encrypting and decrypting a message //

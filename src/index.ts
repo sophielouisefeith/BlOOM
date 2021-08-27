@@ -52,14 +52,14 @@ import eccrypto from "eccrypto";
 
 console.log('create an (ETH) wallet');
 
-console.log("First we generate a wallet from the ethwallet libary");
+//console.log("First we generate a wallet from the ethwallet libary");
 
-var ethWallet = cw.generateWallet('ETH');
+// var ethWallet = cw.generateWallet('ETH');
 
-console.log('create an address');
-console.log("Address: " + ethWallet.address);
-console.log('create an private key');
-console.log("Private Key: " + ethWallet.privateKey);
+// console.log('create an address');
+// console.log("Address: " + ethWallet.address);
+// console.log('create an private key');
+// console.log("Private Key: " + ethWallet.privateKey);
 
 
 //SHA-256 is one of the four variants in the SHA-2 set. 
@@ -82,22 +82,16 @@ let pubKey = keyPair.getPublic();
 console.log(`Private key: ${privKey}`);
 console.log("Public key :", pubKey.encode("hex", true).substr(2));
 console.log("Public key (compressed):",pubKey.encodeCompressed("hex"));
-
-
 //******************** ****************************************/
 //             SIGN A MESSAGE                                      //
 //*********************************************** ************/
-
 //Message encryption and signing is done by a private key
-
 const msg = 'He this message comes from Rose, needs to be signed, verified and encrypted';
 // hash your message before signing 
- var hash = sha3.keccak256(msg);
+var hash = sha3.keccak256(msg);
 // we sign with a private key
 const privKeyb = Buffer.from(privKey, "utf-8");
 let signature = ec.sign(hash, privKeyb, "hex", {canonical: true});
-
-
 console.log(`Msg: ${msg}`);
 console.log(`Msg hash: ${hash}`);
 console.log("Signature:", signature);
@@ -116,40 +110,18 @@ console.log("Recovered pubKey:",
 let validSig = ec.verify(
   hash, signature, pubKeyRecovered);
 console.log("Signature valid?", validSig);
-
+//******************** ****************************************/
+//             encrypt and decryp a message                   //
+//*********************************************** ************/
 //let encryptdata = msg;
 const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
     // The standard secure default length for RSA keys is 2048 bits
     modulusLength: 2048,
-  });
-const encryptMessage = crypto.publicEncrypt(
-{
-        key: publicKey,
-        padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-        oaepHash: "sha256",
-
-},
-        Buffer.from(msg)
-);
-
+  }); 
+const encryptMessage = crypto.publicEncrypt({key: publicKey,},Buffer.from(msg));
 console.log("encypted data: ", encryptMessage.toString("base64"));
-
-
-const decryptedMessage = crypto.privateDecrypt(
-    {
-      key: privateKey,
-      // In order to decrypt the data, we need to specify the
-      // same hashing function and padding scheme that we used to
-      // encrypt the data in the previous step
-      padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-      oaepHash: "sha256",
-    },
-    encryptMessage
-  );
-  
-  // The decrypted data is of the Buffer type, which we can convert to a
-  // string to reveal the original data
-  console.log("decrypted data: ", decryptedMessage.toString());
+const decryptedMessage = crypto.privateDecrypt({key: privateKey,},encryptMessage);
+console.log("decrypted data: ", decryptedMessage.toString());
 
 
 
