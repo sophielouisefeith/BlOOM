@@ -7,7 +7,7 @@
 // - Compatible with Ethereum (optional)
 // - HD wallet (optional)
 
-import { publicKey } from "eth-crypto";
+//import { publicKey } from "eth-crypto";
 
 // export {};
 
@@ -29,11 +29,18 @@ console.log('hello')
 import sha3 from "js-sha3";
 import elliptic from "elliptic";
 let ec = new elliptic.ec('secp256k1');
+import cw from "crypto-wallets";
+import crypto from "crypto";
+import eccrypto from "eccrypto";
+//var crypto = require("crypto");
+//var eccrypto = require("eccrypto");
+
+
+
 // var hash = CryptoJS.MD5("Message");
 // var hash = CryptoJS.SHA1("Message");
-var cw = require('crypto-wallets');
-var crypto = require("crypto");
-var eccrypto = require("eccrypto");
+//var cw = require('crypto-wallets');
+
 
 
 
@@ -111,10 +118,15 @@ let validSig = ec.verify(
 console.log("Signature valid?", validSig);
 
 //let encryptdata = msg;
-
+const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
+    // The standard secure default length for RSA keys is 2048 bits
+    modulusLength: 2048,
+  });
 const encryptMessage = crypto.publicEncrypt(
 {
-        key: pubKey,
+        key: publicKey,
+        padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
+        oaepHash: "sha256",
 
 },
         Buffer.from(msg)
@@ -123,7 +135,21 @@ const encryptMessage = crypto.publicEncrypt(
 console.log("encypted data: ", encryptMessage.toString("base64"));
 
 
-
+const decryptedMessage = crypto.privateDecrypt(
+    {
+      key: privateKey,
+      // In order to decrypt the data, we need to specify the
+      // same hashing function and padding scheme that we used to
+      // encrypt the data in the previous step
+      padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
+      oaepHash: "sha256",
+    },
+    encryptMessage
+  );
+  
+  // The decrypted data is of the Buffer type, which we can convert to a
+  // string to reveal the original data
+  console.log("decrypted data: ", decryptedMessage.toString());
 
 
 
