@@ -11,8 +11,11 @@ Creating a Crypto wallet
 Practice with different crypto libatries
 Methods on how to generate keys sent encrypted messages
 
-## run
+## run install instructions
 npm run start 
+npm install
+npm install typescript
+npm install crypto-js 
 
 ## Background
 
@@ -31,6 +34,8 @@ https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/cont
 https://cryptobook.nakov.com/crypto-libraries-for-developers/javascript-crypto-libraries 
 
 https://www.sohamkamani.com/nodejs/rsa-encryption/
+
+https://github.com/nakov/Practical-Cryptography-for-Developers-Book/blob/3cbe60554b9a1fce016a41fce708525adcd0323f/encryption-symmetric-and-asymmetric.md
 ## Non-Goals
 
 

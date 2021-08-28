@@ -14,9 +14,10 @@ import elliptic from "elliptic";
 let ec = new elliptic.ec('secp256k1');
 import crypto from "crypto";
 console.log('create an (ETH) wallet');
-//******************** ****************************************/
-//             GENERATE KEYS       with elliptic              //
-//*********************************************** ************/
+//******************** *************************************************************************/
+//             GENERATE KEYS       with elliptic  
+// https://cryptobook.nakov.com/crypto-libraries-for-developers/javascript-crypto-libraries    //
+//*********************************************** *********************************************/
 //Generate random keys
 let keyPair = ec.genKeyPair();
 let privKey = keyPair.getPrivate("hex");
@@ -26,7 +27,7 @@ console.log("Public key :", pubKey.encode("hex", true).substr(2));
 console.log("Public key (compressed):", pubKey.encodeCompressed("hex"));
 //******************** ****************************************/
 //             SIGN A MESSAGE                                  //
-//*********************************************** ************/
+//*************************************************************/
 //Message encryption and signing is done by a private key
 const msg = 'He this message comes from Rose, needs to be signed, verified and encrypted';
 // hash your message before signing 
@@ -46,7 +47,8 @@ console.log("Recovered pubKey:", pubKeyRecovered.encodeCompressed("hex"));
 let validSig = ec.verify(hash, signature, pubKeyRecovered);
 console.log("Signature valid?", validSig);
 //******************** ****************************************/
-//             encrypt and decryp a message                   //
+//             encrypt and decryp a message     
+// https://www.sohamkamani.com/nodejs/rsa-encryption/           //
 //*********************************************** ************/
 //let encryptdata = msg;
 const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
