@@ -23,7 +23,14 @@ With this assiment we experiment for the first time with a crypto wallet and her
 • understanding a crypto wallet 
 • Different ways to encrypt and decrypt
 
+## Source code:
 
+https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/content/cryptography-overview.html
+
+
+https://cryptobook.nakov.com/crypto-libraries-for-developers/javascript-crypto-libraries 
+
+https://www.sohamkamani.com/nodejs/rsa-encryption/
 ## Non-Goals
 
 
