@@ -1,12 +1,18 @@
 # Crypto Wallet 
 
+
 ###### tags: crypto wallet, ethereum
 https://eng.lyft.com/awesome-tech-specs-86eea8e45bb9
 ## Summary
 
+
+
 Creating a Crypto wallet
 Practice with different crypto libatries
 Methods on how to generate keys sent encrypted messages
+
+## run
+npm run start 
 
 ## Background
 
@@ -17,7 +23,14 @@ With this assiment we experiment for the first time with a crypto wallet and her
 • understanding a crypto wallet 
 • Different ways to encrypt and decrypt
 
+## Source code:
 
+https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/content/cryptography-overview.html
+
+
+https://cryptobook.nakov.com/crypto-libraries-for-developers/javascript-crypto-libraries 
+
+https://www.sohamkamani.com/nodejs/rsa-encryption/
 ## Non-Goals
 
 
@@ -43,8 +56,7 @@ Public-key cryptography, or asymmetric cryptography, is any cryptographic system
 
 :rocket: 
 
-firt choose a libary such as crypto js. 
-npm install crypto-js
+
 
 ## Generating keys: 
 RSA works by generating a public and a private key. The public and private keys are generated together and form a key pair.
