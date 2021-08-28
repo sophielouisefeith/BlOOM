@@ -17,11 +17,16 @@ With this assiment we experiment for the first time with a crypto wallet and her
 • understanding a crypto wallet 
 • Different ways to encrypt and decrypt
 
+
 ## Non-Goals
+
 
 ## Plan
 
+Understanding the concept
+
 ## Measuring impact
+Trial and error on personal level
 
 ## Milestones 
 
@@ -33,8 +38,8 @@ Public-key cryptography, or asymmetric cryptography, is any cryptographic system
 - [x] Generating keys
 - [x] Signing messages
 - [x] Verifying signatures
-- [ ] Encrypting messages
-- [ ] Decrypting messages
+- [x] Encrypting messages
+- [x] Decrypting messages
 
 :rocket: 
 
@@ -92,6 +97,10 @@ SHA-3 Cryptographic Hash Algorithms
 
 ### Veryfinging signatures 
 
+
+
+
+//////////// to update encrypting below
 
 Authenticated Encryption: Encrypt / Decrypt Messages
 using MAC
