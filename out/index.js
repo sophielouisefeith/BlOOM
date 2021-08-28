@@ -6,43 +6,14 @@
 // - Compatible with Bitcoin (optional)
 // - Compatible with Ethereum (optional)
 // - HD wallet (optional)
-//import { publicKey } from "eth-crypto";
-// export {};
-console.log('hello');
-// with keypair we can generate RSA keys.
-//var keypair = require('keypair');
-//var pair = keypair();
-//console.log(pair, "he public and private key");
-// libaries 
-// import CryptoJS from 'crypto-js';
-//import EthCrypto = require('eth-crypto');
-// import crypto from "crypto";
-// var eccrypto = require("eccrypto");
-//let elliptic = require('elliptic');
-//let sha3 = require('js-sha3');
+//******************** ****************************************/
+//             Libaries                                       //
+//*********************************************** ************/
 import sha3 from "js-sha3";
 import elliptic from "elliptic";
 let ec = new elliptic.ec('secp256k1');
 import crypto from "crypto";
-//var crypto = require("crypto");
-//var eccrypto = require("eccrypto");
-// var hash = CryptoJS.MD5("Message");
-// var hash = CryptoJS.SHA1("Message");
-//var cw = require('crypto-wallets');
-//import chalk from 'chalk';
-//console.log(chalk.blue('Hello world!'));
 console.log('create an (ETH) wallet');
-//console.log("First we generate a wallet from the ethwallet libary");
-// var ethWallet = cw.generateWallet('ETH');
-// console.log('create an address');
-// console.log("Address: " + ethWallet.address);
-// console.log('create an private key');
-// console.log("Private Key: " + ethWallet.privateKey);
-//SHA-256 is one of the four variants in the SHA-2 set. 
-//It isn't as widely used as SHA-1, though it appears 
-//to provide much better security.
-// var hash = CryptoJS.SHA256("hash:");
-// console.log("hash", hash);
 //******************** ****************************************/
 //             GENERATE KEYS       with elliptic              //
 //*********************************************** ************/
@@ -54,7 +25,7 @@ console.log(`Private key: ${privKey}`);
 console.log("Public key :", pubKey.encode("hex", true).substr(2));
 console.log("Public key (compressed):", pubKey.encodeCompressed("hex"));
 //******************** ****************************************/
-//             SIGN A MESSAGE                                      //
+//             SIGN A MESSAGE                                  //
 //*********************************************** ************/
 //Message encryption and signing is done by a private key
 const msg = 'He this message comes from Rose, needs to be signed, verified and encrypted';
@@ -66,8 +37,7 @@ let signature = ec.sign(hash, privKeyb, "hex", { canonical: true });
 console.log(`Msg: ${msg}`);
 console.log(`Msg hash: ${hash}`);
 console.log("Signature:", signature);
-let hexToDecimal = (x) => ec.keyFromPrivate(x, "hex")
-    .getPrivate().toString(10);
+let hexToDecimal = (x) => ec.keyFromPrivate(x, "hex").getPrivate().toString(10);
 let pubKeyRecovered = ec.recoverPubKey(hexToDecimal(hash), signature, signature.recoveryParam, "hex");
 console.log("Recovered pubKey:", pubKeyRecovered.encodeCompressed("hex"));
 //******************** ****************************************/
@@ -80,7 +50,7 @@ console.log("Signature valid?", validSig);
 //*********************************************** ************/
 //let encryptdata = msg;
 const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
-    // The standard secure default length for RSA keys is 2048 bits
+    // The standard secure default length for RSA keys is 2048 bits 
     modulusLength: 2048,
 });
 const encryptMessage = crypto.publicEncrypt({ key: publicKey, }, Buffer.from(msg));
@@ -138,3 +108,31 @@ console.log("decrypted data: ", decryptedMessage.toString());
 //******************** ****************************************/
 //              TWEETNACL //
 //*********************************************** ************/
+// with keypair we can generate RSA keys.
+//var keypair = require('keypair');
+//var pair = keypair();
+//console.log(pair, "he public and private key");
+// libaries 
+// import CryptoJS from 'crypto-js';
+//import EthCrypto = require('eth-crypto');
+// import crypto from "crypto";
+// var eccrypto = require("eccrypto");
+//let elliptic = require('elliptic');
+//let sha3 = require('js-sha3');
+//var eccrypto = require("eccrypto");
+// var hash = CryptoJS.MD5("Message");
+// var hash = CryptoJS.SHA1("Message");
+//var cw = require('crypto-wallets');
+//import chalk from 'chalk';
+//console.log(chalk.blue('Hello world!'));
+//console.log("First we generate a wallet from the ethwallet libary");
+// var ethWallet = cw.generateWallet('ETH');
+// console.log('create an address');
+// console.log("Address: " + ethWallet.address);
+// console.log('create an private key');
+// console.log("Private Key: " + ethWallet.privateKey);
+//SHA-256 is one of the four variants in the SHA-2 set. 
+//It isn't as widely used as SHA-1, though it appears 
+//to provide much better security.
+// var hash = CryptoJS.SHA256("hash:");
+// console.log("hash", hash);
